@@ -16,6 +16,8 @@ services:
     command: --default-authentication-plugin=mysql_native_password
     environment:
       MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - ./DB_PHP.sql:/DB_PHP.sql
     ports:
       - '3306:3306'
 

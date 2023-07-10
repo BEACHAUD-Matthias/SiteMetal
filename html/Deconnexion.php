@@ -1,5 +1,5 @@
 <?php
-session_destroy();
-header('Location: Acceuil.php');
-exit();
-?>
+
+require './Fonctions/User.php';
+
+disconnect();

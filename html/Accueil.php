@@ -21,7 +21,6 @@
 ?> 
 <!--A partir d'ici commence une variable "ob_start()"-->
 <?php ob_start();?>
-    <div class='template'>
         <div class='containerGlobal'>
             <a href="VueArticle.php?id_Article=<?=$derniereReview['id_Article']?>">
                 <div class='container' >
@@ -82,7 +81,6 @@
                 </div>
             </div>
         <?php } ?>
-    </div>
 
 <!-- tout ce qui se situe entre ob_start et ob_get_clean est placé dans une variable
 <?php $contenuPage = ob_get_clean(); ?>

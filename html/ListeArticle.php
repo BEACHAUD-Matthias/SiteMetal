@@ -10,22 +10,20 @@ $id_type_article = $_GET["id_type_article"];
 ?> 
 <!--A partir d'ici commence une variable "ob_start()"-->
 <?php ob_start();?>
-    <div class='template'>
-        <div class='containerGlobal'>
-            <?php foreach($articles as $article){ ?>
-                <a href="VueArticle.php?id_Article=<?=$article['id_Article']?>">
-                    <div class='container'>
-                        <div class='article'>
-                            <h2><?=$article['titre_Article']?></h2>
-                            <hr>
-                            <p><?=$article['libelle_Article']?></p>
-                            <hr>
-                            <p><?=$article['pseudo_User']?></p>
-                        </div>
+    <div class='containerGlobal'>
+        <?php foreach($articles as $article){ ?>
+            <a href="VueArticle.php?id_Article=<?=$article['id_Article']?>">
+                <div class='container'>
+                    <div class='article'>
+                        <h2><?=$article['titre_Article']?></h2>
+                        <hr>
+                        <p><?=$article['libelle_Article']?></p>
+                        <hr>
+                        <p><?=$article['pseudo_User']?></p>
                     </div>
-                </a>
-            <?php } ?>
-        </div>
+                </div>
+            </a>
+        <?php } ?>
     </div>
 <!-- tout ce qui se situe entre ob_start et ob_get_clean est placé dans une variable
 <?php $contenuPage = ob_get_clean(); ?>

@@ -10,7 +10,7 @@ body {
     background-image: url("paradise_lost.jpg");
     width: 70%;
     height: fit-content;
-    min-height: 1600px;
+    min-height: 100%;
     margin:auto;
     display: flex;
     flex-direction: column;
@@ -78,8 +78,8 @@ body {
     margin: auto;
   }
 
-  /* Style des liens dans la barre de navigation */
-  .navbar button {
+/* Style des liens dans la barre de navigation */
+.navbar button {
     background-color: #413f3f;
     color: black;
     padding: 10px;
@@ -88,15 +88,15 @@ body {
     cursor: pointer;
     height: 100%;
     width: 100px;
-  }
+}
 
-  /* Style des liens survolés dans la barre de navigation */
-  .navbar a:hover {
+/* Style des liens survolés dans la barre de navigation */
+.navbar a:hover {
     background-color: #857373;
     align-self: auto;
-  }
+}
 
-  .auth button {
+.auth button {
     background-color: #413f3f;
     color: black;
     padding: 10px;
@@ -105,4 +105,12 @@ body {
     cursor: pointer;
     height: 100%;
     width: 100px;
-  }
+}
+
+.form-background {
+    background-color: rgba(211, 211, 211, 0.75);
+    width: fit-content;
+    margin: auto;
+    padding: 20px;
+    border-radius: 10px;
+}
