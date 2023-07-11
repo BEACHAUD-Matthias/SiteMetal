@@ -4,7 +4,8 @@ services:
 
   php:
     container_name: sitemetal_php
-    image: ghcr.io/ld-web/php-apache:8.2
+    build:
+      context: ./
     volumes:
       - ./html:/var/www/html/
     ports:
