@@ -1,1 +1,1 @@
-<?php // TODO : Faire la page
+<h1 class="msg">Page Introuvable</h1>

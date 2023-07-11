@@ -1,12 +1,14 @@
 <?php
 
+
 require_once 'General.php';
 
-/** Récupère un article par son id */
+
+/** Récupère un article selon son id */
 function getArticle(string $id_Article): mixed
 {
     // Récupération de la connexion à la base de données
-    $pdo = getPDO(); // Fonction getPDO() hérité de General.php
+    $pdo = getPDO(); // General.php
     // Préparation de la requête pour récupérer l'article
     $query = $pdo->prepare(query: "SELECT * FROM Article WHERE id_Article = :id_Article");
     // Exécution de la requête en appliquant ses paramètres
@@ -16,23 +18,70 @@ function getArticle(string $id_Article): mixed
     return $query->fetch();
 }
 
+
 /**
- * @param string|null $refTypeArticle
- * @param string|null $refAuteur
+ * Récupère la liste d'articles
  *
- * @return mixed
+ * @param string|null $refTypeArticle Selon le type d'article
+ * @param string|null $refAuteur Selon l'auteur
+ */
+function getListArticle(?string $refTypeArticle = null, ?string $refAuteur = null): array|false
+{
+    // Init du string de conditions et de l'array de paramètres
+    $condition = '';
+    $params = [];
+    // Ajout de condition et paramètre s'il y a une ref_Type_Article
+    if ($refTypeArticle) {
+        $condition .= "WHERE ref_Type_Article = :ref_Type_Article";
+        $params[":ref_Type_Article"] = $refTypeArticle;
+    }
+    // Ajout de condition et paramètre s'il y a une ref_Auteur
+    if ($refAuteur) {
+        $condition .= "WHERE ref_Auteur = :ref_Auteur";
+        $params[":ref_Auteur"] = $refAuteur;
+    }
+
+    // Récupération de la connexion à la BDD
+    $pdo = getPDO(); // General.php
+    // Préparation de la requête
+    $query = $pdo->prepare(query: "SELECT * FROM Article $condition ORDER BY id_Article DESC");
+    // Exécution de la requête en appliquant ses paramètres
+    $query->execute(params: $params);
+
+    // Retour des articles récupérés
+    return $query->fetchAll();
+}
+
+
+/**
+ * Récupère le dernier article
+ *
+ * @param string|null $refTypeArticle Selon le type d'article
+ * @param string|null $refAuteur Selon l'auteur
  */
 function getLastArticle(?string $refTypeArticle = null, ?string $refAuteur = null): mixed
-// TODO : gérer via fetch
-// TODO : split PDO (voir getArticle())
 {
-    $condition = $refTypeArticle ? "WHERE ref_Type_Article = $refTypeArticle" : "";
-    $condition .= $refAuteur ? "WHERE ref_Auteur = $refAuteur" : "";
+    // Init du string de conditions et de l'array de paramètres
+    $condition = '';
+    $params = [];
+    // Ajout de condition et paramètre s'il y a une ref_Type_Article
+    if ($refTypeArticle) {
+        $condition .= "WHERE ref_Type_Article = :ref_Type_Article";
+        $params[":ref_Type_Article"] = $refTypeArticle;
+    }
+    // Ajout de condition et paramètre s'il y a une ref_Auteur
+    if ($refAuteur) {
+        $condition .= "WHERE ref_Auteur = :ref_Auteur";
+        $params[":ref_Auteur"] = $refAuteur;
+    }
 
-    return getPDO()->query("
-        SELECT * FROM Article 
-        LEFT JOIN User ON Article.ref_Auteur=User.id_User
-        $condition
-        ORDER BY Article.id_Article DESC
-    ")->fetch();
+    // Récupération de la connexion à la BDD
+    $pdo = getPDO(); // General.php
+    // Préparation de la requête
+    $query = $pdo->prepare(query: "SELECT * FROM Article $condition ORDER BY id_Article DESC LIMIT 1");
+    // Exécution de la requête en appliquant ses paramètres
+    $query->execute(params: $params);
+
+    // Retour de l'article récupéré
+    return $query->fetch();
 }

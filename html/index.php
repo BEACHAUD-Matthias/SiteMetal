@@ -8,10 +8,16 @@ foreach ($files as $file) {
     }
 }
 
-// Récupération de la route
-$route = $_SERVER['REDIRECT_URL'];
-// Attribution de la route 'home' s'il n'y en a pas
-$route = '/' == $route ? 'home' : $route;
+$componentsPath = __DIR__ . '/Components';
+$files = scandir($componentsPath);
+foreach ($files as $file) {
+    if (str_ends_with($file, '.php')) {
+        include_once "$componentsPath/$file";
+    }
+}
+
+// Récupération de la route ('home' si vide)
+$route = $_SERVER['REDIRECT_URL'] ?? 'home';
 
 // Route du fichier dans les assets
 $assetPath = __DIR__ . "/Assets/$route";
@@ -25,8 +31,7 @@ if (file_exists($assetPath)) {
 $pagePath = __DIR__ . "/Pages/$route.php";
 // Redirection vers la page 404 si la page demandée n'existe pas
 if (!file_exists($pagePath)) {
-    header("Location: /404");
-    exit;
+    $pagePath = __DIR__ . "/Pages/404.php";
 }
 
 $user = sessionGet(attribute: 'user');
@@ -41,9 +46,9 @@ $username = $user ? '<p>' . $user['pseudo_User'] . '</p>' : '';
     <body>
         <div class="navbar">
             <a href="/home"><button>Accueil</button></a>
-            <a href="/listeArticle?id_type_article=1"><button>Liste Critiques</button></a>
-            <a href="/listeArticle?id_type_article=2"><button>Liste Interviews</button></a>
-            <a href="/listeArticle?id_type_article=3"><button>Liste Essais</button></a>
+            <a href="/listArticles?id_type_article=1"><button>Liste Critiques</button></a>
+            <a href="/listArticles?id_type_article=2"><button>Liste Interviews</button></a>
+            <a href="/listArticles?id_type_article=3"><button>Liste Essais</button></a>
             <a href='/login'><button>Connexion</button></a>
             <a href='/disconnect'><button>Déconnexion</button></a>
             <?= $username ?>
