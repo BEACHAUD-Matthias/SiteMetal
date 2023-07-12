@@ -1,5 +1,6 @@
 <?php
 
+// Chargement des fonctions
 $fonctionsPath = __DIR__ . '/Fonctions';
 $files = scandir($fonctionsPath);
 foreach ($files as $file) {
@@ -8,6 +9,7 @@ foreach ($files as $file) {
     }
 }
 
+// Chargement des components
 $componentsPath = __DIR__ . '/Components';
 $files = scandir($componentsPath);
 foreach ($files as $file) {
@@ -21,7 +23,7 @@ $route = $_SERVER['REDIRECT_URL'] ?? 'home';
 
 // Route du fichier dans les assets
 $assetPath = __DIR__ . "/Assets/$route";
-// Affichage de l'asset s'il existe
+// Retour de l'asset s'il existe
 if (file_exists($assetPath)) {
     include_once $assetPath;
     exit();
