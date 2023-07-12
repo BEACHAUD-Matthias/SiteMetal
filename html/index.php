@@ -42,6 +42,7 @@ $username = $user ? '<p>' . $user['pseudo_User'] . '</p>' : '';
     <head>
         <link rel="stylesheet" href="SiteMetalCSS.css">
         <title>SiteMetal</title>
+        <?= loadAlert() ?>
     </head>
     <body>
         <div class="navbar">

@@ -1,9 +1,5 @@
 <?php
 
-
-require_once 'General.php';
-
-
 /**
  * @param string $id_User
  * @return mixed

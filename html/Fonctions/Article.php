@@ -1,9 +1,5 @@
 <?php
 
-
-require_once 'General.php';
-
-
 /** Récupère un article selon son id */
 function getArticle(string $id_Article): mixed
 {

@@ -4,6 +4,11 @@
         returnHome(); // General.php
     }
 
+    if(!isUserConnected()) {
+        setAlert("Vous devez vous connecter pour avoir accès à cette page"); // General.php
+        returnHome();
+    }
+
     // Récupération des données
     $article = getArticle(id_Article: $_GET["id_Article"]); // Article.php
     $auteur = getUser(id_User: $article['ref_Auteur']); // User.php
