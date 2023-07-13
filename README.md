@@ -18,15 +18,15 @@ Projet de gestions d'articles sur le métal en général
 
   - ## Description
 
-    [//]: # (TODO : Description)
     - Ce projet permet de voir une collection d'articles enregistrés dans une base de données.
       Il faut se connecter ou créer un compte pour avoir accès au détail de l'article.
+
+    - Dans le futur ce projet aura d'autres fonctionalités tels que l'ajout et la modification d'articles et la gestion de contenu de la base de donnée pour l'instant non utilisé
 
 - ## MVC
 
   - ### Modèle
 
-    [//]: # (TODO : Model)
     ![Alt text](./ModelSiteMetal.png)
 
   - ### Vue
@@ -39,4 +39,8 @@ Projet de gestions d'articles sur le métal en général
 
     - Utilisation d'un fichier **.htaccess** pour faire passer toutes les requêtes par index.php
 
-    [//]: # (TODO : Controller)
+    - index.php représente le routeur ces fonctions principales sont :
+
+      - l'inclusion des fichiers de fonctions et les components
+
+      - la récupération de la route et chargement de la vue correspondante dans un template de base
